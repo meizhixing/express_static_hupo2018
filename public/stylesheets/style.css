@@ -5,3 +5,23 @@ body {
 a {
   color: #00B7FF;
 }
+
+.console_command {
+  background-color: black;
+  color: green;
+  font-size: 12px;
+  padding: 5px 4px 5px 5px;
+  width: 512px;
+  height: 80px;
+  border:0.5px solid rgba(200,200,0,1.0);
+}
+.console {
+  background-color: #EEEEEE;
+  color: #000000;
+  padding: 5px 4px 5px 5px;
+  font-size: 12px;
+  width: 512px;
+  height: 256px;
+  text-align:left;
+  border:4px solid rgba(220,210,180,1.0);
+}

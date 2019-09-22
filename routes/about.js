@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/',function(req, res, next) {
-  res.render('about',{title: '理Note'});
+  res.render('about',{title: 'Li-Note'});
 });
 
 module.exports = router;
