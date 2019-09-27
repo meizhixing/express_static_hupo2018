@@ -1,0 +1,22 @@
+.btn-group-vertical.toolbox-group-vertical-utils.boxeffect2(onmousedown='mydragg.startMoving(this,"worldcontainer",event);', onmouseup='mydragg.stopMoving("worldcontainer");', ontouchstart='touch(this,event)',ontouchend='touch(this,event)',ontouchmove='touch(this,event)',style='left:20px;top:40px;')
+  .btn-group
+    button.btn.toolbox-utils(type='button', data-toggle='dropdown', style='border-radius:3px') 便笺
+    .dropdown-menu.dropdown-menu-local
+      a.dropdown-item(onclick='appendVerylighteditor()') 新建
+      a.dropdown-item(href='#') 整理
+  .btn-group
+    button.btn.toolbox-utils(type='button', data-toggle='dropdown', style='border-radius:3px') 收藏夹
+    .dropdown-menu.dropdown-menu-local
+      a.dropdown-item(href='#') 添加
+      a.dropdown-item(href='#') 整理
+  .btn-group
+    button.btn.toolbox-utils(type='button', data-toggle='dropdown', style='border-radius:3px') 博客
+  .btn-group
+    button.btn.toolbox-utils(type='button', data-toggle='dropdown', style='border-radius:3px') 笔记本
+  .btn-group
+    button.btn.toolbox-utils(type='button', data-toggle='dropdown', style='border-radius:3px') 实验室
+  .btn-group
+    button.btn.toolbox-utils(type='button', data-toggle='dropdown', style='border-radius:3px') 极客
+    .dropdown-menu.dropdown-menu-local
+      a.dropdown-item(href='#', onclick='appendVerylighteditor()') 终端
+      a.dropdown-item(href='#') 数据库

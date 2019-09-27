@@ -1,0 +1,52 @@
+extends ../layout
+block append head
+  style(type='text/css').
+
+  link(rel='stylesheet', href='stylesheets/console.css')
+  script(src='javascripts/console.js')
+
+block content
+  p 数据库操作与维护
+  .console(class='boxeffect_console')
+    pre#consolecontent.
+      #{dbname}
+  p    
+  #commandcontent.console_command(contenteditable='true',onfocus='focusconsolecommand(this)',onblur='blurconsolecommand(this)',onkeydown="submitcommand(event)")
+    p 输入命令
+
+  script.
+    function focusconsolecommand(obj) {
+      if(obj.innerHTML== "<p>输入命令</p>"){
+        // obj.innerHTML = "<p></p>";
+        obj.innerHTML = "";
+      }
+    }
+    function blurconsolecommand(obj) {
+      // if(obj.innerHTML== "<p></p>"){
+      if(obj.innerHTML== ""){
+        obj.innerHTML = "<p>输入命令</p>"
+      }
+    }
+    function submitcommand(e) {
+      // alert("你在输入栏内按下一个键")
+      var keyCode;  
+      // var isCtrl = false;
+      if (!keyCode) {
+        if (window.event) {
+          keyCode = event.keyCode;
+        } else if (e.which) {
+          keyCode = e.which;
+        }
+        // if (keyCode === 17) {
+        //   isCtrl = true;
+        // }
+        // alert("key1：" + keyCode + " isCtrl: " + isCtrl);
+        if (e.ctrlKey && keyCode === 13) {
+          processcommand();
+          // alert("ctrl+enter");
+          //commandcontent.innerHTML = "<p></p>"
+        }
+      }
+    };
+
+block foot

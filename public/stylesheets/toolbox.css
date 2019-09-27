@@ -1,0 +1,28 @@
+.toolbox-group-vertical-utils{
+  position:absolute;
+  border:1px solid  #FFEBCD; //#98FB98;
+  background-color: #FFEBCD; //#98FB98;
+  border-radius:3px;
+}
+
+.toolbox-utils {
+  background-color: #FFEBCD; //#98FB98;
+  color: #333333;
+  border: 1px solid transparent;
+  border-radius:3px;
+  overflow: hidden;
+}
+
+.toolbox-utils:hover {
+  background-color: #B0E0E6;
+  color: #666666;
+  overflow: hidden;
+}
+
+.dropdown-menu-local {
+  background-color: #FFFFFF;
+  border:0px solid #50D8E6;
+  min-width:100%;
+  font-size:16.0px;
+  padding:1.5px 1.5px;
+}

@@ -1,0 +1,14 @@
+.blackboard{
+    text-align:left;
+    position:relative;
+    top:0px;
+    min-width: 270px;
+    height:120px;
+    margin:5px auto;
+    outline:none;
+    color: #DDDDDD;
+    background-color: rgba(85,107,47,1.0);
+    border:2px solid rgba(205,133,63,1.0);
+    font-size: 12px;
+    overflow: auto;
+}

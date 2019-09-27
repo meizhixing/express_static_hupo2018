@@ -1,0 +1,11 @@
+.memo {
+    text-align:left;
+    position:relative;
+    top:0px;
+    min-width: 200px;
+    height:100px;
+    margin:5px auto;
+    outline:none;
+    background-color: rgba(230,230,250,1.0);
+    overflow: auto;
+}
