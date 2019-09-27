@@ -1,4 +1,16 @@
 extends layout
+block append head
+  link(rel='stylesheet', href='stylesheets/world.css')
+  link(rel='stylesheet', href='stylesheets/toolbox.css')
+  link(rel='stylesheet', href='stylesheets/memo.css')
+  //link(rel='stylesheet', href='stylesheets/blackboard.css')
+  script(src='javascripts/world.js')
+  script(src='javascripts/toolbox.js')
 
 block content
-  p 新便签
+  #worldcontainer.container-fluid(style='position:absolute')
+    p 
+      | 欢迎来到我的幻境 -
+      a(href='http://114.116.15.10:8005/about', target='_self') 为什么是零
+    include components/toolbox.pug
+    // include components/blackboard.pug

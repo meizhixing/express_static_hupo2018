@@ -1,7 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+let conn = require('../datum/conn');
 
 router.get('/',function(req, res, next) {
-  res.render('console', {title: 'DB-console'});
+  dbname='no db';
+  dbname='connecting to ' + conn.host + ':' + conn.port;
+  dbname=dbname + '\n' + 'database name: '+ conn.name;
+  // from pug default dir 'views' to target pug
+  res.render('components/console', {title: 'console-whyiszero', dbname: dbname});
 });
 module.exports = router;
