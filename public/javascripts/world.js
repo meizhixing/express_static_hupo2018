@@ -66,3 +66,31 @@ function touch(divid,event){
         break;
     }
 };
+
+function worldload() {
+  // var divindex = 0;
+  // var theworld = document.getElementById('navigation');
+  // var node = theworld.nextSibling;
+  // for (var i=0; i<=10; i++) {
+  // oDiv = document.createElement('div');
+  // memocontent="adding dom elements according to dataum-"+i;
+  // oDiv.innerHTML = "<div id='memo"+divindex+"'>"+memocontent+"</div>";
+  // theworld.parentNode.insertBefore(oDiv, node);
+  // divindex=divindex+1;
+  // node=oDiv.nextSibling;
+  // }
+
+  // console.log(document.getElementById("worldcontainer").childNodes);
+  // console.log(document.getElementsByClassName("memo"));
+
+  // console.log(document.getElementById("memo").childNodes);
+  var memos = document.getElementsByClassName("memo");
+  // console.log(memos);
+  for (i = 0; i < memos.length; i++) {
+    console.log(memos[i].style.left);
+    console.log(memos[i].style.top);
+    console.log(memos[i].innerHTML);
+  }
+  console.log(document.getElementById('a12345memo').innerHTML);
+  console.log(document.getElementById('a12346memo').innerHTML);
+};

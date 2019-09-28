@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.7.1",
-    "pug": "^2.0.3"
+    "pug": "^2.0.3",
+    "require": "^2.4.20"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"

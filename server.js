@@ -1,10 +1,10 @@
 'use strict';
 const express = require("express");
 const path = require("path");
+const pug = require("pug");
 
 var aboutRouter = require('./routes/about');
 var indexRouter = require('./routes/index');
-var cardRouter = require('./routes/card');
 var noteRouter= require('./routes/note');
 var favoriteRouter = require('./routes/favorite');
 var timingRouter = require('./routes/timing');
@@ -27,7 +27,6 @@ app.use(express.static(path.join(__dirname,'public')));
 
 app.use('/about',aboutRouter);
 app.use('/',indexRouter);
-app.use('/card',cardRouter);
 app.use('/note',noteRouter);
 app.use('/favorite',favoriteRouter);
 app.use('/timing',timingRouter);
