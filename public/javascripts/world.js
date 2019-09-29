@@ -84,13 +84,53 @@ function worldload() {
   // console.log(document.getElementsByClassName("memo"));
 
   // console.log(document.getElementById("memo").childNodes);
-  var memos = document.getElementsByClassName("memo");
-  // console.log(memos);
-  for (i = 0; i < memos.length; i++) {
-    console.log(memos[i].style.left);
-    console.log(memos[i].style.top);
-    console.log(memos[i].innerHTML);
-  }
-  console.log(document.getElementById('a12345memo').innerHTML);
-  console.log(document.getElementById('a12346memo').innerHTML);
+  
+  saveallstatus()
 };
+
+
+function saveallstatus() {
+  var memostrs;
+  var blackboardstrs;
+  var allstrs="{";
+
+  memostrs = savememostatus();
+  allstrs = allstrs.concat("\"memos\": ").concat(memostrs).concat(",")
+
+  blackboardstrs = saveblackboardstatus();
+  allstrs = allstrs.concat("\"blackboards\": ").concat(blackboardstrs).concat("}")
+
+  console.log(memostrs);
+  console.log(blackboardstrs);
+  console.log(allstrs);
+  console.log(JSON.parse(allstrs));
+}
+
+
+// function savememostatus () {
+//   var memodata = {
+//     left : "0px",
+//     top : "0px",
+//     txtid: "0"
+//     txt: "txt"
+//   };
+//   var memos = document.getElementsByClassName(divname);
+//   for (i = 0; i < memos.length; i++) {
+//     //console.log(memos[i].style.left);
+//     //console.log(memos[i].style.top);
+//     //console.log(memos[i].innerHTML);
+//     memodata.left = memos[i].style.left
+//     memodata.top = memos[i].style.left
+//     memodata.txtid = memos[i].innerHTML.
+//     memodata.txt = document.getElementById(memos[i].txtid).innerHTML
+//     var memostr = JSON.stringify(memodata);
+//     console.log(memostr)
+//     var memoback = JSON.parse(memostr)
+//     console.log(memoback)
+
+//   }
+//   console.log(document.getElementById('a12345memo').innerHTML);
+//   console.log(document.getElementById('a12346memo').innerHTML);
+
+// }
+
