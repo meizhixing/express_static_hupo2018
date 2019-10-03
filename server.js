@@ -1,12 +1,13 @@
 'use strict';
 const express = require("express");
 const path = require("path");
-const pug = require("pug");
+const bodyparser = require('body-parser');
 
-var aboutRouter = require('./routes/about');
+
 var indexRouter = require('./routes/index');
-var noteRouter= require('./routes/note');
+var userRouter = require('./routes/user');
 var favoriteRouter = require('./routes/favorite');
+var noteRouter= require('./routes/note');
 var timingRouter = require('./routes/timing');
 var mathRouter = require('./routes/math');
 var labRouter = require('./routes/lab');
@@ -23,12 +24,15 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname,'public')));
 
-app.use('/about',aboutRouter);
 app.use('/',indexRouter);
-app.use('/note',noteRouter);
+app.use('/user',userRouter);
 app.use('/favorite',favoriteRouter);
+
+app.use('/note',noteRouter);
 app.use('/timing',timingRouter);
 app.use('/math',mathRouter);
 app.use('/lab',labRouter);

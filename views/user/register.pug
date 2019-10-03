@@ -1,0 +1,26 @@
+extends ../layout
+block append head
+  link(rel='stylesheet', href='../stylesheets/world.css')
+  link(rel='stylesheet', href='../stylesheets/register.css')
+
+block content
+
+  #worldcontainer.container-fluid.text-center
+    if errors
+      each error in errors
+        p #{error.msg}
+    .row
+      .col-sm
+        form#registerform.form-register(role='form',method="post",action='/user/register')
+          .form-group.row
+              input.form-control(name="nickname", type="text",placeholder='昵称')
+          .form-group.row
+              input.form-control(name="username", type="text",placeholder='用户名')
+          .form-group.row
+              input.form-control(name="password", type="password",placeholder='密码')
+          .form-group.row
+              input.form-control(name="passwordconfirm", type="password",placeholder='密码确认')
+          .form-group.row
+            .col-sm-15
+              button.btn.btn-primary(type='submit',style='background-color:#009966; border-color:#009966') 注册
+

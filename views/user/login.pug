@@ -1,0 +1,30 @@
+extends ../layout
+block append head
+  link(rel='stylesheet', href='../stylesheets/world.css')
+  link(rel='stylesheet', href='../stylesheets/login.css')
+
+block content
+  #worldcontainer.container-fluid.text-center
+    .row
+      .col-sm
+        form#loginform.form-signin(name='logintohupo', method='post', action='/user/login',role='form')
+          #errorbox.errormessages
+          .login-input-box
+            span.icon.icon-user
+            input#usernameinput.form-control(type='text', placeholder='用户名', required='', autofocus='', name='username', value='')
+          .login-input-box
+            span.icon.icon-password
+            input#passwdinput.form-control(type='password', placeholder='密码', required='', name='password', value='')
+          .checkbox(style='float:left;padding:0px 20px')
+            label
+              input(type='checkbox', value='remember-me')
+              |  记住我
+          button.btn.btn-lg.btn-primary.btn-block(type='submit', style='background-color:#009966; border-color:#009966') 登录
+          div(style='display:flex;padding: 10px 0px')
+            span(style='flex-grow:1')
+              a.font-weight-light(href='', style='color:black;text-decoration:none') 忘记密码?
+            span(style='flex-grow:1')
+              a.font-weight-light(href='register.php', style='color:black;text-decoration:none') 注册
+    .row
+      .col-sm
+        p.mt-5.mb-3.text-muted © 2017-2018
