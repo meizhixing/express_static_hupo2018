@@ -17,8 +17,24 @@ router.get('/login',function(req, res, next) {
 router.post('/login',function(req, res, next) {
   // console.log('test console');
   // res.send("thank you client ");
-  res.send("username: " + req.body.username + " password: " + req.body.password);
+  // res.send("username: " + req.body.username + " password: " + req.body.password);
   // res.send("username: " + req.query.username + " password: " + req.query.password);
+
+  var userinstance = new userModel({nickname: ' ', username: req.body.username, password: req.body.password })
+  // userModel.find(function (err, models) {
+  //   if (err) return console.error(err);
+  // console.log(models);
+  // });
+  // userModel.findOne({ username: 'mei'}, 'username password', function (err, user) {
+  userModel.findOne({ username: req.body.username}, 'username password', function (err, user) {
+  if (user) {
+    // console.log('%s %s ', user.username, user.password);
+    res.send("username: " + user.username + " password: " + user.password);  
+  } else {
+    console.log(err);
+    res.redirect('login');
+  }
+  });
 });
 
 
@@ -30,8 +46,9 @@ router.get('/register',function(req, res, next) {
 router.post('/register',[
     check('nickname').isLength({min: 1}).withMessage('请输入昵称'),
     check('username').isLength({min: 1}).withMessage('请输入用户名'),
-    check('password').isLength({min: 6}).withMessage('请输入密码'),
-    check('passwordconfirm').isLength({min: 6}).custom((value,{req,loc,path}) => {
+    check('password').isLength({min: 1}).withMessage('请输入密码'),
+    check('passwordconfirm').isLength({min: 1}).withMessage('请重复密码'),
+    check('passwordconfirm').custom((value,{req,loc,path}) => {
       if (value !== req.body.passwordconfirm) {
         throw new Error("密码不匹配");
       } else {
@@ -45,18 +62,21 @@ router.post('/register',[
   } else {
     // console.log('test console');
     // res.send("thank you client ");
-    res.send("nickname: " + req.body.nickname + " username: " + req.body.username + " password: " + req.body.password + " password confirm: " + req.body.passwordconfirm);
+    // res.send("nickname: " + req.body.nickname + " username: " + req.body.username + " password: " + req.body.password + " password confirm: " + req.body.passwordconfirm);
+
     // http://www.mongoosejs.net/docs/index.html
     var userinstance = new userModel({nickname: req.body.nickname, username: req.body.username, password: req.body.password })
-    // userinstance.speak();
+    userinstance.speak();
     userinstance.save(function (err, userinstance) {
       if (err) return console.error(err);
       userinstance.speak();
     });
     userModel.find(function (err, models) {
       if (err) return console.error(err);
-    console.log(models);
+      console.log(models);
     });
+
+    res.redirect('login');
 
   }
 });
