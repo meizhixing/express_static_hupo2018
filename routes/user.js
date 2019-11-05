@@ -3,6 +3,7 @@ var router = express.Router();
 var {check, validationResult} = require('express-validator');
 var mongoose = require('mongoose');
 var userModel = require('../datum/user').userModel;
+var passport = require('passport');
 
 router.get('/',function(req, res, next) {
   //res.send('Hello, User');
@@ -14,29 +15,35 @@ router.get('/login',function(req, res, next) {
   res.render('user/login',{container: {title: '登录'}});
 });
 
+// router.post('/login',function(req, res, next) {
+//   // console.log('test console');
+//   // res.send("thank you client ");
+//   // res.send("username: " + req.body.username + " password: " + req.body.password);
+//   // res.send("username: " + req.query.username + " password: " + req.query.password);
+
+//   var userinstance = new userModel({nickname: ' ', username: req.body.username, password: req.body.password })
+//   // userModel.find(function (err, models) {
+//   //   if (err) return console.error(err);
+//   // console.log(models);
+//   // });
+//   // userModel.findOne({ username: 'mei'}, 'username password', function (err, user) {
+//   userModel.findOne({ username: req.body.username}, 'username password', function (err, user) {
+//   if (user) {
+//     // console.log('%s %s ', user.username, user.password);
+//     res.send("username: " + user.username + " password: " + user.password);  
+//   } else {
+//     console.log(err);
+//     res.redirect('login');
+//   }
+//   });
+// });
+
 router.post('/login',function(req, res, next) {
-  // console.log('test console');
-  // res.send("thank you client ");
-  // res.send("username: " + req.body.username + " password: " + req.body.password);
-  // res.send("username: " + req.query.username + " password: " + req.query.password);
-
-  var userinstance = new userModel({nickname: ' ', username: req.body.username, password: req.body.password })
-  // userModel.find(function (err, models) {
-  //   if (err) return console.error(err);
-  // console.log(models);
-  // });
-  // userModel.findOne({ username: 'mei'}, 'username password', function (err, user) {
-  userModel.findOne({ username: req.body.username}, 'username password', function (err, user) {
-  if (user) {
-    // console.log('%s %s ', user.username, user.password);
-    res.send("username: " + user.username + " password: " + user.password);  
-  } else {
-    console.log(err);
-    res.redirect('login');
-  }
-  });
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/user/login'
+  })(req, res, next);
 });
-
 
 router.get('/register',function(req, res, next) {
   //res.send('Hello, User');
