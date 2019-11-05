@@ -4,10 +4,11 @@ var {check, validationResult} = require('express-validator');
 var mongoose = require('mongoose');
 var userModel = require('../datum/user').userModel;
 var passport = require('passport');
+var ensureAuthenticated = require('../datum/authentication');
 
-router.get('/',function(req, res, next) {
-  //res.send('Hello, User');
-  res.render('user/user',{container: {title: '用户管理'}});
+router.get('/',ensureAuthenticated,function(req, res, next) {
+  // res.send('hello '+req.session.username);
+  res.render('user/user',{container: {title: '用户管理', username: req.session.username}});
 });
 
 router.get('/login',function(req, res, next) {
@@ -38,12 +39,23 @@ router.get('/login',function(req, res, next) {
 //   });
 // });
 
-router.post('/login',function(req, res, next) {
-  passport.authenticate('local', {
-    successRedirect: '/',
+// router.post('/login',function(req, res, next) {
+//   passport.authenticate('local', {
+//     successRedirect: '/user',
+//     failureRedirect: '/user/login'
+//   })(req, res, next);
+
+// });
+
+
+router.post('/login',passport.authenticate('local', {
     failureRedirect: '/user/login'
-  })(req, res, next);
+  }),function(req, res, next) {
+    req.session.username=req.user.username;
+    //res.redirect('/user/' + req.user.username);
+    res.redirect('/user');
 });
+
 
 router.get('/register',function(req, res, next) {
   //res.send('Hello, User');
