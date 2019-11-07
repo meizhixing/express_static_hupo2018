@@ -5,11 +5,7 @@ var mongoose = require('mongoose');
 var userModel = require('../datum/user').userModel;
 var passport = require('passport');
 var ensureAuthenticated = require('../datum/authentication');
-
-router.get('/',ensureAuthenticated,function(req, res, next) {
-  // res.send('hello '+req.session.username);
-  res.render('user/user',{container: {title: '用户管理', username: req.session.username}});
-});
+const bcrypt = require('bcrypt');
 
 router.get('/login',function(req, res, next) {
   //res.send('Hello, User');
@@ -51,9 +47,11 @@ router.get('/login',function(req, res, next) {
 router.post('/login',passport.authenticate('local', {
     failureRedirect: '/user/login'
   }),function(req, res, next) {
+    console.log(req.user._id.toString());
     req.session.username=req.user.username;
-    //res.redirect('/user/' + req.user.username);
-    res.redirect('/user');
+    req.session.nickname=req.user.nickname;
+    res.redirect('/user/' + req.user._id.toString());
+    //res.redirect('/user');
 });
 
 
@@ -71,6 +69,8 @@ router.post('/register',[
       if (value !== req.body.passwordconfirm) {
         throw new Error("密码不匹配");
       } else {
+
+
         return value;
       }
     })
@@ -84,20 +84,41 @@ router.post('/register',[
     // res.send("nickname: " + req.body.nickname + " username: " + req.body.username + " password: " + req.body.password + " password confirm: " + req.body.passwordconfirm);
 
     // http://www.mongoosejs.net/docs/index.html
-    var userinstance = new userModel({nickname: req.body.nickname, username: req.body.username, password: req.body.password })
-    userinstance.speak();
-    userinstance.save(function (err, userinstance) {
-      if (err) return console.error(err);
-      userinstance.speak();
-    });
-    userModel.find(function (err, models) {
-      if (err) return console.error(err);
-      console.log(models);
-    });
 
-    res.redirect('login');
-
+      var userinstance = new userModel({nickname: req.body.nickname, username: req.body.username, password: req.body.password })      
+      bcrypt.genSalt(10, function(err, salt) {
+	  bcrypt.hash(req.body.password, salt, function(err, hash) {
+	      if (err) {
+		  console.log(err);
+		  return;
+	      }
+              // Store hash in your password DB.
+	      userinstance.password = hash;
+	      userinstance.speak();
+	      userinstance.save(function (err, userinstance) {
+		  if (err) return console.error(err);
+		  userinstance.speak();
+	      });
+	  });
+      });
+      userModel.find(function (err, models) {
+	  if (err) return console.error(err);
+	  console.log(models);
+      });
+      res.redirect('login');
+      
   }
+  });
+
+
+router.get('/*',ensureAuthenticated,function(req, res, next) {
+    // res.send('hello '+req.session.username);
+    // res.send(req.path.substring(1)+' '+req.user._id.toString());
+    if (req.path.substring(1)!=req.user._id.toString()){
+	res.redirect('login');
+    }
+    res.render('user/user',{container: {title: '用户管理', username: req.session.username, nickname: req.session.nickname}});
 });
+
 
 module.exports = router;

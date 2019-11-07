@@ -16,7 +16,18 @@
   .btn-group
     button.btn.toolbox-utils(type='button', data-toggle='dropdown', style='border-radius:3px') 实验室
   .btn-group
-    button.btn.toolbox-utils(type='button', data-toggle='dropdown', style='border-radius:3px') 极客
+    button.btn.toolbox-utils(type='button', data-toggle='dropdown', style='border-radius:3px') 场景
+    .dropdown-menu.dropdown-menu-local
+      a.dropdown-item(onclick='savescene()') 保存
+      a.dropdown-item(href='#') 新建
+      a.dropdown-item(href='#') 打开
+      a.dropdown-item(href='#') 设置
+  .btn-group
+    button.btn.toolbox-utils(type='button', data-toggle='dropdown', style='border-radius:3px') 数据
     .dropdown-menu.dropdown-menu-local
       a.dropdown-item(href='#', onclick='appendVerylighteditor()') 终端
       a.dropdown-item(href='#') 数据库
+
+
+
+

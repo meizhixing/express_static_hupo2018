@@ -9,9 +9,9 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.speak = function () {
-    var greeting = "db-Nickname: " + this.nickname
-	+ " db-Username: " + this.username
-	+ " db-password: " + this.password
+    var greeting = "nickname: " + this.nickname
+	+ " username: " + this.username
+	+ " password: " + this.password
     console.log(greeting);
 }
 const userModel = mongoose.model('User',userSchema);

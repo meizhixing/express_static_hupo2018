@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./user').userModel;
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 module.exports = function(passport) {
   passport.use(new LocalStrategy(
@@ -9,20 +9,21 @@ module.exports = function(passport) {
         if (err) { return done(err); }
 
         if (!user) { return done(null, false, { message: 'No User Found' }); }
-        if (password == user.password) {
-	    return done(null, user); 
-	} else {
-	    return done(null, false, { message: 'Incorrect password.' });
-	}
 
-        // bcrypt.compare(password, user.password, function(err, isMatch) {
-        //   if (err) { return done(err); }
-        //   if (isMatch) {
-        //     return done(null, user);
-        //   } else {
-        //     return done(null, false, { message: 'Incorrect password.' });
-        //   }
-        // })
+        // if (password == user.password) {
+	//     return done(null, user); 
+	// } else {
+	//     return done(null, false, { message: 'Incorrect password.' });
+	// }
+	console.log(user._id.toString())
+        bcrypt.compare(password, user.password, function(err, isMatch) {
+          if (err) { return done(err); }
+          if (isMatch) {
+            return done(null, user);
+          } else {
+            return done(null, false, { message: 'Incorrect password.' });
+          }
+        })
 
       });
     }

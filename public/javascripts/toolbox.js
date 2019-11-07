@@ -9,6 +9,8 @@ function newmemo(){
         style=\"position:absolute;left:320px;top:160px\" \
         class=\"memo boxeffect2\" \
         ><pre><\pre></div>";
+
     $("#worldcontainer").append(txt);
+//    $("#worldcontainer").append("<p>hello</p>");
 };
 
