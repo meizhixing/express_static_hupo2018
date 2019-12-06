@@ -117,7 +117,7 @@ router.get('/*',ensureAuthenticated,function(req, res, next) {
     if (req.path.substring(1)!=req.user._id.toString()){
 	res.redirect('login');
     }
-    res.render('user/user',{container: {title: '用户管理', username: req.session.username, nickname: req.session.nickname}});
+    res.render('user/user',{container: {title: '用户管理', username: req.session.username, nickname: req.session.nickname, userid: req.user._id.toString() ,sceneid: "s0001"}});
 });
 
 

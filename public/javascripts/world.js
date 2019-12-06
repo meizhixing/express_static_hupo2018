@@ -90,20 +90,26 @@ function worldload() {
 
 
 function saveallstatus() {
-  var memostrs;
-  var blackboardstrs;
-  var allstrs="{";
+    var memostrs;
+    var blackboardstrs;
 
-  memostrs = savememostatus();
-  allstrs = allstrs.concat("\"memos\": ").concat(memostrs).concat(",")
+    var allstrs="{";
 
-  blackboardstrs = saveblackboardstatus();
-  allstrs = allstrs.concat("\"blackboards\": ").concat(blackboardstrs).concat("}")
+    memostrs = savememostatus();
+    allstrs = allstrs.concat("\"memos\": ").concat(memostrs).concat(",");
 
-  console.log(memostrs);
-  console.log(blackboardstrs);
-  console.log(allstrs);
-  console.log(JSON.parse(allstrs));
+    blackboardstrs = saveblackboardstatus();
+    allstrs = allstrs.concat("\"blackboards\": ").concat(blackboardstrs);
+
+    allstrs = allstrs.concat("}")
+    //console.log(memostrs);
+    // console.log(memostrs.length);
+    // console.log(blackboardstrs.length);
+    //console.log(blackboardstrs);
+    console.log(allstrs);
+    if (memostrs.length>0 || blackboardstrs.length>0) {
+	console.log(JSON.parse(allstrs));
+    }
 }
 
 
@@ -133,4 +139,13 @@ function saveallstatus() {
 //   console.log(document.getElementById('a12346memo').innerHTML);
 
 // }
+
+function savescene(userid,sceneid) {
+    var memostrs;
+    memostrs = savememostatus();
+    console.log(memostrs);
+    console.log(userid);
+    console.log(sceneid);
+
+}
 

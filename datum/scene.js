@@ -2,7 +2,8 @@ let mongoose = require('mongoose');
 
 const sceneSchema = new mongoose.Schema({
     belongto: {type: String, required: true},
-    scene: {type: String}
+    sceneid: {type: String},
+    scenecontent: {type: String}
 });
 
 sceneSchema.methods.speak = function () {

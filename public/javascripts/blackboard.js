@@ -7,7 +7,7 @@ function saveblackboardstatus () {
   var blackboards = document.getElementsByClassName("blackboard");
   var blackboardstr
   // var blackboardstrs="{\"blackboards\": [";
-  var blackboardstrs="[";
+  var blackboardstrs="";
   var blackboardback;
   var blackboardbacks;
   // console.log(blackboards);
@@ -23,6 +23,9 @@ function saveblackboardstatus () {
     // blackboardback = JSON.parse(blackboardstr);
     // console.log(blackboardback)
     // console.log(blackboardstr)
+    if (i==0 && blackboards.length >= 1) {
+    blackboardstrs="[";
+    }
     if (i != (blackboards.length-1)) {
       blackboardstrs=blackboardstrs.concat(blackboardstr).concat(",");
     } else {

@@ -7,7 +7,7 @@ function savememostatus () {
   var memos = document.getElementsByClassName("memo");
   var memostr;
   // var memostrs="{\"memos\": [";
-  var memostrs="[";
+  var memostrs="";
   var memoback;
   var memobacks;
   // console.log(memos);
@@ -23,6 +23,9 @@ function savememostatus () {
     // memoback = JSON.parse(memostr);
     // console.log(memoback)
     // console.log(memostr)
+    if (i==0 && memos.length >= 1) {
+    memostrs="[";
+    }
     if (i != (memos.length-1)) {
       memostrs=memostrs.concat(memostr).concat(",");
     } else {
